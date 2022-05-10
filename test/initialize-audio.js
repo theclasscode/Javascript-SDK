@@ -1,14 +1,11 @@
-
-
 const iOSp = /(iPhone|iPad)/i.test(navigator.userAgent);
-const SILENCE = iOSp ?
-  'https://u9e9h7z5.map2.ssl.hwcdn.net/feedfm-audio/250-milliseconds-of-silence.mp3' :
-  'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+const SILENCE = iOSp
+  ? "https://d2pz0anq08lzl7.cloudfront.net/250-milliseconds-of-silence.mp3"
+  : "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 
-  
 function createAudio() {
   let audio = new Audio(SILENCE);
-  audio.crossOrigin = 'anonymous';
+  audio.crossOrigin = "anonymous";
   audio.loop = false;
   audio.volume = 1.0;
 
@@ -16,15 +13,15 @@ function createAudio() {
     audio: audio,
     pause: null,
     ended: null,
-    timeupdate: null
+    timeupdate: null,
   };
 }
 
 function recycleAudio(a, url, speaker) {
   if (a.pause) {
-    a.audio.removeEventListener('pause', a.pause);
-    a.audio.removeEventListener('ended', a.ended);
-    a.audio.removeEventListener('timeupdate', a.timeupdate);
+    a.audio.removeEventListener("pause", a.pause);
+    a.audio.removeEventListener("ended", a.ended);
+    a.audio.removeEventListener("timeupdate", a.timeupdate);
   }
 
   a.audio.pause();
@@ -35,15 +32,15 @@ function recycleAudio(a, url, speaker) {
   a.ended = speaker._onAudioEndedEvent.bind(speaker);
   a.timeupdate = speaker._onAudioTimeUpdateEvent.bind(speaker);
 
-  a.audio.addEventListener('pause', a.pause);
-  a.audio.addEventListener('ended', a.ended);
-  a.audio.addEventListener('timeupdate', a.timeupdate);
+  a.audio.addEventListener("pause", a.pause);
+  a.audio.addEventListener("ended", a.ended);
+  a.audio.addEventListener("timeupdate", a.timeupdate);
 
   return {
     audio: a.audio,
     sound: null,
     gain: null, // (for now)
-    volume: 1.0
+    volume: 1.0,
   };
 }
 
@@ -61,15 +58,19 @@ export default function initializeAudio() {
 
   Feed.Speaker.prototype.initializeAudio = function () {
     if (this.active === null) {
-      console.log('initializing audio!');
+      console.log("initializing audio!");
 
       this.audioContext = context;
 
       this.active = recycleAudio(a, SILENCE, this);
       this.fading = recycleAudio(b, SILENCE, this);
-      this.preparing = recycleAudio(c, this.prepareWhenReady ? this.prepareWhenReady : SILENCE, this);
+      this.preparing = recycleAudio(
+        c,
+        this.prepareWhenReady ? this.prepareWhenReady : SILENCE,
+        this
+      );
 
       this.prepareWhenReady = null;
     }
   };
-};
+}
