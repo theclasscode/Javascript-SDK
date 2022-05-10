@@ -8,7 +8,7 @@
   },
   "version": "1.103.1",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --format cjs",
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "serve .",
