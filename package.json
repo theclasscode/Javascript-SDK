@@ -6,9 +6,9 @@
     "name": "Eric Lambrecht",
     "email": "eric@feed.fm"
   },
-  "version": "1.103.1",
+  "version": "1.103.12",
   "scripts": {
-    "build": "rollup -c --format cjs",
+    "build": "rollup -c",
     "prepublish": "npm run build",
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
