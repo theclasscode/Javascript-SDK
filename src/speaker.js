@@ -62,7 +62,22 @@ import { uniqueId } from "./util";
 
 const DEFAULT_VOLUME = 1.0;
 
-const IOS = false;
+const IOS =
+  [
+    "iPad Simulator",
+    "iPhone Simulator",
+    "iPod Simulator",
+    "iPad",
+    "iPhone",
+    "iPod",
+  ].includes(navigator.platform) ||
+  // iPad on iOS 13 detection
+  (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+
+console.log({
+  platform: navigator.platform,
+  IOS,
+});
 const brokenWebkit = IOS && /OS 13_[543210]/i.test(navigator.userAgent);
 
 const SILENCE = IOS
