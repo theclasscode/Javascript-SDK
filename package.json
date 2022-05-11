@@ -40,7 +40,7 @@
     "tiny-cookie": "^2.3.2",
     "whatwg-fetch": "^3.0.0"
   },
-  "main": "lib/index.js",
+  "main": "lib/index2.js",
   "files": [
     "CHANGELOG.md",
     "LICENSE.md",
