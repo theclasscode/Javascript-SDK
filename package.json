@@ -9,6 +9,7 @@
   "version": "1.103.1",
   "scripts": {
     "build": "rollup -c --format cjs",
+    "prepublish": "npm run build",
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "serve .",
