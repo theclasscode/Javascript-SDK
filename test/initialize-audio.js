@@ -3,6 +3,13 @@ const SILENCE = iOSp
   ? "https://d2pz0anq08lzl7.cloudfront.net/250-milliseconds-of-silence.mp3"
   : "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 
+console.log("initialize", {
+  navigator,
+  agent: navigator.userAgent,
+  platform: navigator.platform,
+  iOSp,
+});
+
 function createAudio() {
   let audio = new Audio(SILENCE);
   audio.crossOrigin = "anonymous";
