@@ -6,7 +6,7 @@
     "name": "Eric Lambrecht",
     "email": "eric@feed.fm"
   },
-  "version": "1.103.12",
+  "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
     "prepublish": "npm run build",
